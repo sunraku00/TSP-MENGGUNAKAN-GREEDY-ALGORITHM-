@@ -5,10 +5,6 @@
 
 using namespace std;
 
-// Adjacency matrix berdasarkan graf dari soal
-// Vertices: A, B, C, D, E, F, G
-// Mapping: A=0, B=1, C=2, D=3, E=4, F=5, G=6
-
 int main() {
     cout << "=== TSP MENGGUNAKAN GREEDY ALGORITHM (NEAREST NEIGHBOR) ===" << endl;
     cout << "NIM: 23533780 (angka 0 diganti dengan 11)" << endl;
@@ -16,9 +12,7 @@ int main() {
     
     int n = 7; // Jumlah vertex (A, B, C, D, E, F, G)
     char vertices[] = {'A', 'B', 'C', 'D', 'E', 'F', 'G'};
-    
-    // Adjacency matrix berdasarkan graf dari soal
-    // Menggunakan angka dari NIM: 2, 3, 5, 3, 3, 7, 8, 11
+        
     vector<vector<int>> graph = {
         //   A  B  C  D  E  F  G
         {0,  2, 11, 0, 3,  0, 0}, // A
@@ -30,7 +24,6 @@ int main() {
         {0,  0, 0,  3, 11, 0, 0}  // G
     };
     
-    // Tampilkan adjacency matrix
     cout << "Adjacency Matrix:" << endl;
     cout << "   ";
     for (int i = 0; i < n; i++) {
@@ -46,8 +39,8 @@ int main() {
         cout << endl;
     }
     cout << endl;
-    
-    // Mulai dari vertex A (index 0)
+   
+ 
     int start = 0;
     vector<bool> visited(n, false);
     vector<int> path;
@@ -61,7 +54,6 @@ int main() {
     cout << "===================================" << endl;
     cout << "Mulai dari vertex " << vertices[start] << endl;
     
-    // Algoritma Nearest Neighbor
     for (int step = 0; step < n - 1; step++) {
         int nearest = -1;
         int minCost = INT_MAX;
@@ -69,7 +61,6 @@ int main() {
         cout << "\nLangkah " << (step + 1) << ":" << endl;
         cout << "Dari vertex " << vertices[current] << ", cari tetangga terdekat:" << endl;
         
-        // Cari tetangga terdekat yang belum dikunjungi
         for (int i = 0; i < n; i++) {
             if (!visited[i] && graph[current][i] > 0) {
                 cout << "  Ke " << vertices[i] << " dengan cost " << graph[current][i] << endl;
@@ -89,7 +80,6 @@ int main() {
         }
     }
     
-    // Kembali ke vertex awal
     if (graph[current][start] > 0) {
         cout << "\nKembali ke vertex " << vertices[start] << " dengan cost " << graph[current][start] << endl;
         path.push_back(start);
