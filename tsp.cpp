@@ -14,7 +14,7 @@ int main() {
     char vertices[] = {'A', 'B', 'C', 'D', 'E', 'F', 'G'};
         
     vector<vector<int>> graph = {
-        //   A  B  C  D  E  F  G
+        
         {0,  2, 11, 0, 3,  0, 0},
         {2,  0, 5,  3, 0,  0, 0}, 
         {11, 5, 0,  0, 0,  7, 0}, 
