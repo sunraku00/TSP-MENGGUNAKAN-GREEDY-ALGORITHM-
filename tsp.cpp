@@ -1,0 +1,113 @@
+#include <iostream>
+#include <vector>
+#include <climits>
+#include <iomanip>
+
+using namespace std;
+
+// Adjacency matrix berdasarkan graf dari soal
+// Vertices: A, B, C, D, E, F, G
+// Mapping: A=0, B=1, C=2, D=3, E=4, F=5, G=6
+
+int main() {
+    cout << "=== TSP MENGGUNAKAN GREEDY ALGORITHM (NEAREST NEIGHBOR) ===" << endl;
+    cout << "NIM: 23533780 (angka 0 diganti dengan 11)" << endl;
+    cout << "Graf berdasarkan gambar dalam soal" << endl << endl;
+    
+    int n = 7; // Jumlah vertex (A, B, C, D, E, F, G)
+    char vertices[] = {'A', 'B', 'C', 'D', 'E', 'F', 'G'};
+    
+    // Adjacency matrix berdasarkan graf dari soal
+    // Menggunakan angka dari NIM: 2, 3, 5, 3, 3, 7, 8, 11
+    vector<vector<int>> graph = {
+        //   A  B  C  D  E  F  G
+        {0,  2, 11, 0, 3,  0, 0}, // A
+        {2,  0, 5,  3, 0,  0, 0}, // B  
+        {11, 5, 0,  0, 0,  7, 0}, // C
+        {0,  3, 0,  0, 0,  8, 3}, // D
+        {3,  0, 0,  0, 0,  0, 11}, // E
+        {0,  0, 7,  8, 0,  0, 0}, // F
+        {0,  0, 0,  3, 11, 0, 0}  // G
+    };
+    
+    // Tampilkan adjacency matrix
+    cout << "Adjacency Matrix:" << endl;
+    cout << "   ";
+    for (int i = 0; i < n; i++) {
+        cout << setw(3) << vertices[i];
+    }
+    cout << endl;
+    
+    for (int i = 0; i < n; i++) {
+        cout << vertices[i] << ": ";
+        for (int j = 0; j < n; j++) {
+            cout << setw(3) << graph[i][j];
+        }
+        cout << endl;
+    }
+    cout << endl;
+    
+    // Mulai dari vertex A (index 0)
+    int start = 0;
+    vector<bool> visited(n, false);
+    vector<int> path;
+    int totalCost = 0;
+    int current = start;
+    
+    path.push_back(current);
+    visited[current] = true;
+    
+    cout << "Proses Nearest Neighbor Algorithm:" << endl;
+    cout << "===================================" << endl;
+    cout << "Mulai dari vertex " << vertices[start] << endl;
+    
+    // Algoritma Nearest Neighbor
+    for (int step = 0; step < n - 1; step++) {
+        int nearest = -1;
+        int minCost = INT_MAX;
+        
+        cout << "\nLangkah " << (step + 1) << ":" << endl;
+        cout << "Dari vertex " << vertices[current] << ", cari tetangga terdekat:" << endl;
+        
+        // Cari tetangga terdekat yang belum dikunjungi
+        for (int i = 0; i < n; i++) {
+            if (!visited[i] && graph[current][i] > 0) {
+                cout << "  Ke " << vertices[i] << " dengan cost " << graph[current][i] << endl;
+                if (graph[current][i] < minCost) {
+                    minCost = graph[current][i];
+                    nearest = i;
+                }
+            }
+        }
+        
+        if (nearest != -1) {
+            cout << "Pilih vertex " << vertices[nearest] << " dengan cost " << minCost << endl;
+            path.push_back(nearest);
+            visited[nearest] = true;
+            totalCost += minCost;
+            current = nearest;
+        }
+    }
+    
+    // Kembali ke vertex awal
+    if (graph[current][start] > 0) {
+        cout << "\nKembali ke vertex " << vertices[start] << " dengan cost " << graph[current][start] << endl;
+        path.push_back(start);
+        totalCost += graph[current][start];
+    }
+    
+    cout << "\nHASIL AKHIR:" << endl;
+    cout << "============" << endl;
+    cout << "Path yang dilalui: ";
+    for (int i = 0; i < path.size(); i++) {
+        cout << vertices[path[i]];
+        if (i < path.size() - 1) cout << " -> ";
+    }
+    cout << endl;
+    cout << "Total cost: " << totalCost << endl;
+    
+    cout << "\nCatatan: Ini adalah solusi greedy yang tidak selalu optimal." << endl;
+    cout << "Untuk TSP, solusi optimal memerlukan algoritma yang lebih kompleks." << endl;
+    
+    return 0;
+}
