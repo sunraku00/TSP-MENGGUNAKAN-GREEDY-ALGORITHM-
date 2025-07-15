@@ -10,18 +10,18 @@ int main() {
     cout << "NIM: 23533780 (angka 0 diganti dengan 11)" << endl;
     cout << "Graf berdasarkan gambar dalam soal" << endl << endl;
     
-    int n = 7; // Jumlah vertex (A, B, C, D, E, F, G)
+    int n = 7; 
     char vertices[] = {'A', 'B', 'C', 'D', 'E', 'F', 'G'};
         
     vector<vector<int>> graph = {
         //   A  B  C  D  E  F  G
-        {0,  2, 11, 0, 3,  0, 0}, // A
-        {2,  0, 5,  3, 0,  0, 0}, // B  
-        {11, 5, 0,  0, 0,  7, 0}, // C
-        {0,  3, 0,  0, 0,  8, 3}, // D
-        {3,  0, 0,  0, 0,  0, 11}, // E
-        {0,  0, 7,  8, 0,  0, 0}, // F
-        {0,  0, 0,  3, 11, 0, 0}  // G
+        {0,  2, 11, 0, 3,  0, 0},
+        {2,  0, 5,  3, 0,  0, 0}, 
+        {11, 5, 0,  0, 0,  7, 0}, 
+        {0,  3, 0,  0, 0,  8, 3}, 
+        {3,  0, 0,  0, 0,  0, 11}, 
+        {0,  0, 7,  8, 0,  0, 0}, 
+        {0,  0, 0,  3, 11, 0, 0}  
     };
     
     cout << "Adjacency Matrix:" << endl;
