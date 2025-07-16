@@ -6,17 +6,20 @@
 using namespace std;
 
 int main() {
+    string nim;
+    cout << "Masukkan NIM Anda: ";
+    cin >> nim;
+    
     cout << "=== TSP MENGGUNAKAN GREEDY ALGORITHM (NEAREST NEIGHBOR) ===" << endl;
-    cout << "NIM: 23533780 (angka 0 diganti dengan 11)" << endl;
+    cout << "NIM: " << nim << " (angka 0 diganti dengan 11)" << endl;
     cout << "Graf berdasarkan gambar dalam soal" << endl << endl;
     
     int n = 7; 
     char vertices[] = {'A', 'B', 'C', 'D', 'E', 'F', 'G'};
-        
+    
     vector<vector<int>> graph = {
-        
-        {0,  2, 11, 0, 3,  0, 0},
-        {2,  0, 5,  3, 0,  0, 0}, 
+        {0,  2, 11, 0, 3,  0, 0}, 
+        {2,  0, 5,  3, 0,  0, 0},  
         {11, 5, 0,  0, 0,  7, 0}, 
         {0,  3, 0,  0, 0,  8, 3}, 
         {3,  0, 0,  0, 0,  0, 11}, 
@@ -39,8 +42,7 @@ int main() {
         cout << endl;
     }
     cout << endl;
-   
- 
+    
     int start = 0;
     vector<bool> visited(n, false);
     vector<int> path;
